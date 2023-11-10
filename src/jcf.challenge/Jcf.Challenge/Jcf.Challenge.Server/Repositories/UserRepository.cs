@@ -62,7 +62,7 @@ namespace Jcf.Challenge.Server.Repositories
         {
             try
             {
-                return await _appDbContext.Users.Where(_ => _.Id.Equals(id)).AsNoTracking().SingleOrDefaultAsync();
+                return await _appDbContext.Users.Where(_ => _.Id.Equals(id) && _.IsActive).AsNoTracking().SingleOrDefaultAsync();
             }
             catch (Exception ex)
             {

@@ -37,6 +37,17 @@ namespace Jcf.Challenge.Server.Models
         public DateTime DateOfBirth { get; set; }
 
         [Required]        
-        public bool Status { get; set; }    
+        public bool Status { get; set; }
+
+        public Driver(string name, string documentNumber, string licenseNumber, List<EDriversLicenseCategory> licenseCategories, DateTime dateOfBirth, bool status, Guid? userCreateId = null)
+            : base (userCreateId)
+        {
+            Name = name;
+            DocumentNumber = documentNumber;            
+            LicenseNumber = licenseNumber;            
+            LicenseCategories = licenseCategories;
+            DateOfBirth = dateOfBirth;
+            Status = status;
+        }
     }
 }
