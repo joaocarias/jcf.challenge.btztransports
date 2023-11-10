@@ -14,10 +14,12 @@ namespace Jcf.Challenge.Server.Controllers
     public class UserController : MyController
     {
         private readonly ILogger<UserController> _logger;
+        private readonly IUserRepository _userRepository;
 
-        public UserController(ILogger<UserController> logger)
+        public UserController(ILogger<UserController> logger, IUserRepository userRepository)
         {
             _logger = logger;
+            _userRepository = userRepository;
         }
 
         #region Crud
@@ -27,16 +29,19 @@ namespace Jcf.Challenge.Server.Controllers
         {
             try
             {
-                var user = new User(newUser.Name, newUser.Email, PasswordUtil.CreateHashMD5(newUser.Password));
-                var user = await _userRepository.CreateAsync(newUser);
-                if (user is null) BadRequest(new { statusCode = HttpStatusCode.BadGateway, error = true, message = "Error creating record!" });
+                if (await _userRepository.AnyUserNameAsync(newUser.Email))
+                    return Conflict(new { StatusCode = HttpStatusCode.Conflict, error = true, message = "Email já cadastrado!", newUser.Email });
 
-                return Created(user.Id.ToString(), new { response = new { user.Name, user.UserName, user.Email, user.CreateAt, user.FirstName } });
+                var user = new User(newUser.Name, newUser.Email, newUser.Email, PasswordUtil.CreateHashMD5(newUser.Password));
+                user = await _userRepository.CreateAsync(user);
+                if (user is null) BadRequest(new { statusCode = HttpStatusCode.BadGateway, error = true, message = "Erro ao criar usuário!" });
+
+                return Created(user.Id.ToString(), new { response = new { StatusCode = HttpStatusCode.Created, message = "Cadastrado!", user.Id, user.Name, user.FirstName, user.UserName, user.Email, user.CreatedAt } });
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                return BadRequest(new { error = true, message = ex.Message });
+                return BadRequest(new { StatusCode = HttpStatusCode.BadRequest, error = true, message = ex.Message });
             }
         }
 
@@ -45,10 +50,10 @@ namespace Jcf.Challenge.Server.Controllers
         {
             try
             {
-                var entity = await _userRepository.GetAsync(id);
+                var entity = await _userRepository.GetByIdAsync(id);
                 if (entity is null) return NoContent();
 
-                entity.SetPassword(string.Empty);
+                entity.ClearPassword();
                 return Ok(entity);
             }
             catch (Exception ex)
@@ -57,28 +62,6 @@ namespace Jcf.Challenge.Server.Controllers
                 return BadRequest(new { error = true, message = ex.Message });
             }
         }
-
-        [HttpPut]
-        public async Task<IActionResult> Update([Required] Guid id, [Required] UserViewModel updateUser)
-        {
-            try
-            {
-                if (id != updateUser.Id) return NoContent();
-
-                var entity = await _userRepository.GetAsync(id);
-                if (entity is null) return NoContent();
-
-                entity.Update(updateUser.Name, updateUser.Email, updateUser.UserName);
-                return Ok(entity);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.Message);
-                return BadRequest(new { error = true, message = ex.Message });
-            }
-        }
-
-
 
         #endregion
     }

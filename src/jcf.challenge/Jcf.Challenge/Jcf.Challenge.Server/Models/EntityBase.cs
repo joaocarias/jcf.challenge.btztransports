@@ -21,5 +21,11 @@ namespace Jcf.Challenge.Server.Models
             RemovedAt = DateTime.UtcNow;
             IsActive = false;
         }
+
+        public EntityBase()
+        {
+            IsActive = true;
+            CreatedAt = DateTime.UtcNow;
+        }
     }
 }

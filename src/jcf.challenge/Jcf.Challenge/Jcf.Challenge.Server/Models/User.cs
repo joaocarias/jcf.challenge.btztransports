@@ -24,5 +24,18 @@ namespace Jcf.Challenge.Server.Models
 
         [NotMapped]
         public string FirstName { get { return Name.FirstPart(); } }
+
+        public User(string name, string email, string userName, string password) : base()
+        {
+            Name = name;
+            Email = email;
+            UserName = userName;
+            Password = password;
+        }
+
+        public void ClearPassword()
+        {
+            Password = "";
+        }
     }
 }

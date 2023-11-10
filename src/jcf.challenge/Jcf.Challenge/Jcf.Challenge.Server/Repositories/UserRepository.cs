@@ -15,6 +15,19 @@ namespace Jcf.Challenge.Server.Repositories
             _logger = logger;
         }
 
+        public async Task<bool> AnyUserNameAsync(string userName)
+        {
+            try
+            {
+                return await _appDbContext.Users.AsNoTracking().AnyAsync(_ => _.UserName.Equals(userName));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return false;
+            }
+        }
+
         public async Task<User?> CreateAsync(User entity)
         {
             try
@@ -45,7 +58,7 @@ namespace Jcf.Challenge.Server.Repositories
             }
         }
 
-        public async Task<User?> GetByIdAsync(int id)
+        public async Task<User?> GetByIdAsync(Guid id)
         {
             try
             {
