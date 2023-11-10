@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34227.203
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jcf.Challenge.Server", "Jcf.Challenge\Jcf.Challenge.Server\Jcf.Challenge.Server.csproj", "{5C551E05-CC02-4BA7-B8B9-EF1D2CF43D68}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "jcf.challenge.client", "Jcf.Challenge\jcf.challenge.client\jcf.challenge.client.esproj", "{8C609AF2-8813-48BF-9616-EF082EABB196}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5C551E05-CC02-4BA7-B8B9-EF1D2CF43D68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C551E05-CC02-4BA7-B8B9-EF1D2CF43D68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C551E05-CC02-4BA7-B8B9-EF1D2CF43D68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C551E05-CC02-4BA7-B8B9-EF1D2CF43D68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C609AF2-8813-48BF-9616-EF082EABB196}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C609AF2-8813-48BF-9616-EF082EABB196}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C609AF2-8813-48BF-9616-EF082EABB196}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8C609AF2-8813-48BF-9616-EF082EABB196}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C609AF2-8813-48BF-9616-EF082EABB196}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C609AF2-8813-48BF-9616-EF082EABB196}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FBAF3131-21E0-4883-A952-E04C371EB49F}
+	EndGlobalSection
+EndGlobal
