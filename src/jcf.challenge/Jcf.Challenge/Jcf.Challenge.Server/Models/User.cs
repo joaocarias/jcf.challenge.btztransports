@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Jcf.Challenge.Server.Extensions;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Jcf.Challenge.Server.Models
 {
@@ -19,6 +21,8 @@ namespace Jcf.Challenge.Server.Models
         [Required]
         [StringLength(255)]
         public string Password { get; set; }
-    
+
+        [NotMapped]
+        public string FirstName { get { return Name.FirstPart(); } }
     }
 }

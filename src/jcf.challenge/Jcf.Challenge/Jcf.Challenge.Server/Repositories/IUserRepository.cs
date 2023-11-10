@@ -2,7 +2,7 @@
 
 namespace Jcf.Challenge.Server.Repositories
 {
-    public interface IUserRepositoty : IRepositoryBase<User>
+    public interface IUserRepository : IRepositoryBase<User>
     {
         
     }

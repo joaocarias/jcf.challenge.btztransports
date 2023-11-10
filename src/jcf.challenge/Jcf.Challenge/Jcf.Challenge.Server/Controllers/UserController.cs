@@ -1,4 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Jcf.Challenge.Server.Extensions.Utils;
+using Jcf.Challenge.Server.Models;
+using Jcf.Challenge.Server.Models.ViewModels;
+using Jcf.Challenge.Server.Repositories;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using System.Net;
 
 namespace Jcf.Challenge.Server.Controllers
 {
@@ -16,12 +23,11 @@ namespace Jcf.Challenge.Server.Controllers
         #region Crud
 
         [HttpPost, AllowAnonymous]
-        public async Task<IActionResult> Create([Required] User newUser)
+        public async Task<IActionResult> Create([Required] CreateUserViewModel newUser)
         {
             try
             {
-                newUser.SetPassword(PasswordUtil.CreateHashMD5(newUser.Password));
-
+                var user = new User(newUser.Name, newUser.Email, PasswordUtil.CreateHashMD5(newUser.Password));
                 var user = await _userRepository.CreateAsync(newUser);
                 if (user is null) BadRequest(new { statusCode = HttpStatusCode.BadGateway, error = true, message = "Error creating record!" });
 

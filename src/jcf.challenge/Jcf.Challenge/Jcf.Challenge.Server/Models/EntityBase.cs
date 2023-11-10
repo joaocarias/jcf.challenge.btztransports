@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Jcf.Challenge.Server.Models
 {
-    public class EntityBase
+    public abstract class EntityBase
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -15,5 +15,11 @@ namespace Jcf.Challenge.Server.Models
 
 
         public DateTime? RemovedAt { get; set; }
+
+        public void Remove()
+        {
+            RemovedAt = DateTime.UtcNow;
+            IsActive = false;
+        }
     }
 }
