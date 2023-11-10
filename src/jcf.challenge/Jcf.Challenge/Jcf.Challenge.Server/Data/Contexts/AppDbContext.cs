@@ -1,5 +1,7 @@
-﻿using Jcf.Challenge.Server.Models;
+﻿using Jcf.Challenge.Server.Enums;
+using Jcf.Challenge.Server.Models;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace Jcf.Challenge.Server.Data.Contexts
 {
@@ -8,10 +10,17 @@ namespace Jcf.Challenge.Server.Data.Contexts
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Driver> Drivers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<Driver>(e =>
+            {
+                e.Property(x => x.LicenseCategories).HasColumnType("VARCHAR(50)").HasConversion(
+                    x => JsonConvert.SerializeObject(x),
+                    x => JsonConvert.DeserializeObject<List<EDriversLicenseCategory>>(x)
+                );
+            });
         }
     }
 }

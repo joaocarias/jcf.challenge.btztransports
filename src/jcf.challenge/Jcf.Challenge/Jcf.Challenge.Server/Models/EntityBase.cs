@@ -13,8 +13,11 @@ namespace Jcf.Challenge.Server.Models
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
 
-
         public DateTime? RemovedAt { get; set; }
+
+        public Guid? UserCreateId { get; set; }
+
+        public User? UserCreate { get; set; }
 
         public void Remove()
         {
@@ -22,10 +25,11 @@ namespace Jcf.Challenge.Server.Models
             IsActive = false;
         }
 
-        public EntityBase()
+        public EntityBase(Guid? userCreateId = null)
         {
             IsActive = true;
             CreatedAt = DateTime.UtcNow;
-        }
+            UserCreateId = userCreateId;  
+        }        
     }
 }
