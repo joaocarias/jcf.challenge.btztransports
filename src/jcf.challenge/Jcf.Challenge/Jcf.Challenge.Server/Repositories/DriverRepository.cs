@@ -45,11 +45,24 @@ namespace Jcf.Challenge.Server.Repositories
             }
         }
 
+        public async Task<bool> DocumentNumberInUse(string documentNumber)
+        {
+            try
+            {
+                return await _appDbContext.Drivers.AsNoTracking().AnyAsync(_ => _.DocumentNumber.Equals(documentNumber) && _.IsActive);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return false;
+            }
+        }
+
         public async Task<Driver?> GetByIdAsync(Guid id)
         {
             try
             {
-                return await _appDbContext.Drivers.Where(_ => _.Id.Equals(id) && _.IsActive).AsNoTracking().SingleOrDefaultAsync();
+                return await _appDbContext.Drivers.AsNoTracking().SingleOrDefaultAsync(_ => _.Id.Equals(id) && _.IsActive);
             }
             catch (Exception ex)
             {
@@ -58,11 +71,24 @@ namespace Jcf.Challenge.Server.Repositories
             }
         }
 
+        public async Task<bool> LicenseNumberInUse(string licenseNumber)
+        {
+            try
+            {
+                return await _appDbContext.Drivers.AsNoTracking().AnyAsync(_ => _.LicenseNumber.Equals(licenseNumber) && _.IsActive);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return false;
+            }
+        }
+
         public async Task<IEnumerable<Driver>> ListAll()
         {
             try
             {
-                return await _appDbContext.Drivers.Where(_ => _.IsActive).AsNoTracking().ToListAsync();
+                return await _appDbContext.Drivers.AsNoTracking().Where(_ => _.IsActive).ToListAsync();
             }
             catch (Exception ex)
             {

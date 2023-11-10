@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace Jcf.Challenge.Server.Controllers
 {
+    [Authorize]
     public class MyController : ControllerBase
     {     
         protected Guid? GetUserIdFromToken()

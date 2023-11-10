@@ -21,7 +21,7 @@ namespace Jcf.Challenge.Server.Services
                   {
                     new Claim("USER_ID", user.Id.ToString()),
                     new Claim(ClaimTypes.Name, user.Email),
-                    new Claim("USER_Name", user.Name)
+                    new Claim("USER_NAME", user.Name)
                 });
 
             return cli;

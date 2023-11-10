@@ -39,6 +39,9 @@ namespace Jcf.Challenge.Server.Models
         [Required]        
         public bool Status { get; set; }
 
+        [NotMapped]
+        public string FirstName { get { return Name.FirstPart(); } }
+
         public Driver(string name, string documentNumber, string licenseNumber, List<EDriversLicenseCategory> licenseCategories, DateTime dateOfBirth, bool status, Guid? userCreateId = null)
             : base (userCreateId)
         {

@@ -62,7 +62,7 @@ namespace Jcf.Challenge.Server.Repositories
         {
             try
             {
-                return await _appDbContext.Users.Where(_ => _.Id.Equals(id) && _.IsActive).AsNoTracking().SingleOrDefaultAsync();
+                return await _appDbContext.Users.AsNoTracking().SingleOrDefaultAsync(_ => _.Id.Equals(id) && _.IsActive);
             }
             catch (Exception ex)
             {
@@ -92,9 +92,8 @@ namespace Jcf.Challenge.Server.Repositories
             try
             {
                 var c = await _appDbContext.Users
-                                .Where(_ => _.IsActive.Equals(true) && _.UserName.Equals(userName) && _.Password.Equals(password))
                                 .AsNoTracking()
-                                .SingleOrDefaultAsync();
+                                .SingleOrDefaultAsync(_ => _.IsActive.Equals(true) && _.UserName.Equals(userName) && _.Password.Equals(password));
                 return c;
 
             }
