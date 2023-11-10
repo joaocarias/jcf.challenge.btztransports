@@ -13,13 +13,7 @@ namespace Jcf.Challenge.Server.Controllers
             _logger = logger;
         }
 
-        #region Crud
-
-        #endregion
-
         #region Authenticate
-
-
 
         #endregion
     }
