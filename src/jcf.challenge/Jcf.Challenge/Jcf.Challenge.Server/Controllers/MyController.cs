@@ -4,7 +4,7 @@ using System.Security.Claims;
 namespace Jcf.Challenge.Server.Controllers
 {
     public class MyController : ControllerBase
-    {
+    {     
         protected Guid? GetUserIdFromToken()
         {
             try
