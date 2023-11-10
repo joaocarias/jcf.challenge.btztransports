@@ -19,10 +19,15 @@ namespace Jcf.Challenge.Server.Models
 
         public User? UserCreate { get; set; }
 
-        public void Remove()
+        public Guid? UserUpdateId { get; set; }
+
+        public User? UserUpdate { get; set; }
+
+        public void Remove(Guid? userUpdateId = null)
         {
             RemovedAt = DateTime.UtcNow;
             IsActive = false;
+            UserUpdateId = userUpdateId;
         }
 
         public EntityBase(Guid? userCreateId = null)

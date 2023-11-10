@@ -52,5 +52,18 @@ namespace Jcf.Challenge.Server.Models
             DateOfBirth = dateOfBirth;
             Status = status;
         }
+
+        public void Update(string name, string documentNumber, string licenseNumber, List<EDriversLicenseCategory> licenseCategories, DateTime dateOfBirth, bool status, Guid? userUpdateId = null)            
+        {
+            Name = name;
+            DocumentNumber = documentNumber;
+            LicenseNumber = licenseNumber;
+            LicenseCategories = licenseCategories;
+            DateOfBirth = dateOfBirth;
+            Status = status;
+
+            UpdatedAt = DateTime.UtcNow;
+            UserUpdateId = userUpdateId;
+        }
     }
 }

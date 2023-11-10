@@ -1,6 +1,4 @@
-﻿using Jcf.Challenge.Server.Extensions.Utils;
-using Jcf.Challenge.Server.Models.ViewModels;
-using Jcf.Challenge.Server.Models;
+﻿using Jcf.Challenge.Server.Models;
 using Jcf.Challenge.Server.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
@@ -65,6 +63,61 @@ namespace Jcf.Challenge.Server.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                return Ok(await _driverRepository.ListAllAsync());
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(new { error = true, message = ex.Message });
+            }
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete([Required] Guid id)
+        {
+            try
+            {
+                var driver = await _driverRepository.GetByIdAsync(id);
+                if (driver is null) return NoContent();
+                
+                driver.Remove(GetUserIdFromToken());                                
+                driver = _driverRepository.Update(driver);
+
+                if (driver is null || driver.IsActive.Equals(true)) return BadRequest(new { statusCode = HttpStatusCode.BadGateway, error = true, message = "Aconteceu um erro a deletar o registro!" });
+
+                return Ok(new { message = "Cadastro apagado!", statusCode = HttpStatusCode.OK });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(new { statusCode = HttpStatusCode.BadRequest, error = true, message = ex.Message });
+            }
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([Required] Guid id, [Required] Driver updateDriver)
+        {
+            if (id != updateDriver.Id) return NoContent();
+
+            var driver = await _driverRepository.GetByIdAsync(updateDriver.Id);
+            if (driver is null)
+                return NoContent();
+
+            driver.Update(updateDriver.Name, updateDriver.DocumentNumber, updateDriver.LicenseNumber, updateDriver.LicenseCategories, updateDriver.DateOfBirth, updateDriver.Status, GetUserIdFromToken());
+            driver = _driverRepository.Update(driver);
+            if (driver is null) return BadRequest(new { statusCode = HttpStatusCode.BadGateway, error = true, message = "Erro ao atualizar o Motorista!" });            
+            return Ok(new
+            {
+                driver.Id,
+                driver
+            });
+        }
+    
         #endregion
     }
 }

@@ -4,7 +4,7 @@ namespace Jcf.Challenge.Server.Repositories
 {
     public interface IDriverRepository : IRepositoryBase<Driver>
     {
-        Task<IEnumerable<Driver>> ListAll();
+        Task<IEnumerable<Driver>> ListAllAsync();
         Task<bool> DocumentNumberInUse(string documentNumber);
         Task<bool> LicenseNumberInUse(string licenseNumber);
     }

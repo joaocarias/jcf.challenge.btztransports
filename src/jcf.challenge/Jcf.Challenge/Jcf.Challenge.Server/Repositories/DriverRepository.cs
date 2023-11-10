@@ -84,7 +84,7 @@ namespace Jcf.Challenge.Server.Repositories
             }
         }
 
-        public async Task<IEnumerable<Driver>> ListAll()
+        public async Task<IEnumerable<Driver>> ListAllAsync()
         {
             try
             {
