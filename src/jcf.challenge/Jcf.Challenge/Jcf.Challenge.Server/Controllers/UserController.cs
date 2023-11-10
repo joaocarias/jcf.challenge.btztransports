@@ -29,7 +29,7 @@ namespace Jcf.Challenge.Server.Controllers
         {
             try
             {
-                if (await _userRepository.AnyUserNameAsync(newUser.Email))
+                if (await _userRepository.UserNameInUseAsync(newUser.Email))
                     return Conflict(new { StatusCode = HttpStatusCode.Conflict, error = true, message = "Email já cadastrado!", newUser.Email });
 
                 var user = new User(newUser.Name, newUser.Email, newUser.Email, PasswordUtil.CreateHashMD5(newUser.Password));

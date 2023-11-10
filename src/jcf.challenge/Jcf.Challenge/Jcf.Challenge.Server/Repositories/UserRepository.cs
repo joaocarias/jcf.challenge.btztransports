@@ -15,7 +15,7 @@ namespace Jcf.Challenge.Server.Repositories
             _logger = logger;
         }
 
-        public async Task<bool> AnyUserNameAsync(string userName)
+        public async Task<bool> UserNameInUseAsync(string userName)
         {
             try
             {
@@ -79,6 +79,24 @@ namespace Jcf.Challenge.Server.Repositories
                 _appDbContext.SaveChanges();
 
                 return entity;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return null;
+            }
+        }
+
+        public async Task<User?> AuthenticateAsync(string userName, string password)
+        {
+            try
+            {
+                var c = await _appDbContext.Users
+                                .Where(_ => _.IsActive.Equals(true) && _.UserName.Equals(userName) && _.Password.Equals(password))
+                                .AsNoTracking()
+                                .SingleOrDefaultAsync();
+                return c;
+
             }
             catch (Exception ex)
             {

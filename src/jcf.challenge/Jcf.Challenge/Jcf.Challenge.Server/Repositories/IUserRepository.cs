@@ -2,8 +2,7 @@
 
 namespace Jcf.Challenge.Server.Repositories
 {
-    public interface IUserRepository : IRepositoryBase<User>
-    {
-        Task<bool> AnyUserNameAsync(string userName);
+    public interface IUserRepository : IRepositoryBase<User>, IAuthenticateRepositoryBase<User>
+    {        
     }
 }
