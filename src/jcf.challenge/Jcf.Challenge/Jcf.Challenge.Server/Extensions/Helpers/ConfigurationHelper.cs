@@ -19,18 +19,6 @@
             {
                 return string.Empty;
             }
-        }
-
-        public static GetConfigurationT()
-        {
-            try
-            {
-                return _configuration[config];
-            }
-            catch (Exception)
-            {
-                return string.Empty;
-            }
-        }
+        }      
     }
 }
