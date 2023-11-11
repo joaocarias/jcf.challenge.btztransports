@@ -11,6 +11,7 @@ namespace Jcf.Challenge.Server.Data.Contexts
 
         public DbSet<User> Users { get; set; }
         public DbSet<Driver> Drivers { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
