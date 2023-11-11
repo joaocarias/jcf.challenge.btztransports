@@ -4,7 +4,8 @@ using System.ComponentModel.DataAnnotations;
 namespace Jcf.Challenge.Server.Models.ViewModels
 {
     public record RefuelingViewModel
-    (        
+    (
+        Guid? Id,   
         [Required] Guid VehicleId,
         [Required] Guid DriverId,
         [Required] DateTime DateRefueling,

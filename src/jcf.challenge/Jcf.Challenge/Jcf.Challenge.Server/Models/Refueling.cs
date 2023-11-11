@@ -46,15 +46,14 @@ namespace Jcf.Challenge.Server.Models
             PaidAmount = paidAmount;
         }
 
-        public void Update(Guid vehicleId, Guid driverId, DateTime dateRefueling, EFuelType fuelType, double quantity, double paidAmount, Guid? userUpdateId = null)
+        public void Update(Guid vehicleId, Guid driverId, DateTime dateRefueling, EFuelType fuelType, double quantity, Guid? userUpdateId = null)
         {
             VehicleId = vehicleId;
             DriverId = driverId;
             DateRefueling = dateRefueling;
             FuelType = fuelType;
             Quantity = quantity;
-            PaidAmount = paidAmount;
-
+            
             UpdatedAt = DateTime.UtcNow;
             UserUpdateId = userUpdateId;
         }

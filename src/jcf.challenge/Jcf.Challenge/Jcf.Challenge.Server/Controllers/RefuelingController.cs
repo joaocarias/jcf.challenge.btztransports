@@ -61,7 +61,7 @@ namespace Jcf.Challenge.Server.Controllers
         {
             try
             {
-                var entity = await _vehicleRepository.GetByIdAsync(id);
+                var entity = await _refuelingRepository.GetByIdAsync(id);
                 if (entity is null) return NoContent();
 
                 return Ok(entity);
@@ -78,7 +78,7 @@ namespace Jcf.Challenge.Server.Controllers
         {
             try
             {
-                return Ok(await _vehicleRepository.ListAllAsync());
+                return Ok(await _refuelingRepository.ListAllAsync());
             }
             catch (Exception ex)
             {
@@ -92,13 +92,13 @@ namespace Jcf.Challenge.Server.Controllers
         {
             try
             {
-                var vehicle = await _vehicleRepository.GetByIdAsync(id);
-                if (vehicle is null) return NoContent();
+                var refueling = await _refuelingRepository.GetByIdAsync(id);
+                if (refueling is null) return NoContent();
 
-                vehicle.Remove(GetUserIdFromToken());
-                vehicle = _vehicleRepository.Update(vehicle);
+                refueling.Remove(GetUserIdFromToken());
+                refueling = _refuelingRepository.Update(refueling);
 
-                if (vehicle is null || vehicle.IsActive.Equals(true)) return BadRequest(new { statusCode = HttpStatusCode.BadGateway, error = true, message = "Aconteceu um erro a deletar o registro!" });
+                if (refueling is null || refueling.IsActive.Equals(true)) return BadRequest(new { statusCode = HttpStatusCode.BadGateway, error = true, message = "Aconteceu um erro a deletar o registro!" });
 
                 return Ok(new { message = "Cadastro removido!", statusCode = HttpStatusCode.OK });
             }
@@ -110,21 +110,32 @@ namespace Jcf.Challenge.Server.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([Required] Guid id, [Required] Vehicle updateVehicle)
+        public async Task<IActionResult> Update([Required] Guid id, [Required] RefuelingViewModel model)
         {
-            if (id != updateVehicle.Id) return NoContent();
+            if (id != model.Id || model is null) return NoContent();
 
-            var vehicle = await _vehicleRepository.GetByIdAsync(updateVehicle.Id);
-            if (vehicle is null)
+            var driver = await _driverRepository.GetByIdAsync(model.DriverId);
+            if (driver == null) BadRequest(new { driverId = model.DriverId, error = true, statusCode = HttpStatusCode.NoContent, message = "Motorista não encontrado!" });
+
+            var vehicle = await _vehicleRepository.GetByIdAsync(model.VehicleId);
+            if (vehicle == null) BadRequest(new { vehicleId = model.VehicleId, error = true, statusCode = HttpStatusCode.NoContent, message = "Veículo não encontrado!" });
+
+            var refueling = await _refuelingRepository.GetByIdAsync(model.Id.Value);
+            if (refueling is null)
                 return NoContent();
+            
+            refueling.Update(model.VehicleId, model.DriverId, model.DateRefueling, model.FuelType, model.Quantity, GetUserIdFromToken());
 
-            vehicle.Update(updateVehicle.Plate, updateVehicle.Name, updateVehicle.FuelType, updateVehicle.Manufacturer, updateVehicle.YearManufacture, updateVehicle.MaxCapacityFuel, updateVehicle.Observation, GetUserIdFromToken());
-            vehicle = _vehicleRepository.Update(vehicle);
-            if (vehicle is null) return BadRequest(new { statusCode = HttpStatusCode.BadGateway, error = true, message = "Erro ao atualizar o Motorista!" });
+            if (!refueling.FuelIsValidade(vehicle)) BadRequest(new { vehicleId = model.VehicleId, error = true, statusCode = HttpStatusCode.BadRequest, message = "Combustível não é válido para este veículo!" });
+            if (!refueling.QuantityRefueledIsValidate(vehicle)) BadRequest(new { vehicleId = model.VehicleId, error = true, statusCode = HttpStatusCode.BadRequest, message = "Quantidade de combustível maior que o tanque do veículo consegue suporta!" });
+
+            refueling.PaidAmount = refueling.GetPaidAmount();            
+            refueling = _refuelingRepository.Update(refueling);
+            if (refueling is null) return BadRequest(new { statusCode = HttpStatusCode.BadGateway, error = true, message = "Erro ao atualizar o Abastecimento!" });
             return Ok(new
             {
-                vehicle.Id,
-                vehicle
+                refueling.Id,
+                refueling
             });
         }
     }
