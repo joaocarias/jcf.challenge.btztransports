@@ -7,4 +7,7 @@
     <!-- Folder where production build objects will be placed -->
     <PublishAssetsDirectory>$(MSBuildProjectDirectory)\dist\jcf.challenge.client\</PublishAssetsDirectory>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="src\app\pages\home\home-page\" />
+  </ItemGroup>
 </Project>
