@@ -3,6 +3,7 @@ using System;
 using Jcf.Challenge.Server.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Jcf.Challenge.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231111134552_VehicleTable")]
+    partial class VehicleTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,58 +78,6 @@ namespace Jcf.Challenge.Server.Migrations
                     b.HasIndex("UserUpdateId");
 
                     b.ToTable("Drivers");
-                });
-
-            modelBuilder.Entity("Jcf.Challenge.Server.Models.Refueling", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime>("DateRefueling")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<Guid>("DriverId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<int>("FuelType")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<double>("Quantity")
-                        .HasColumnType("double");
-
-                    b.Property<DateTime?>("RemovedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<Guid?>("UserCreateId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<Guid?>("UserUpdateId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<Guid>("VehicleId")
-                        .HasColumnType("char(36)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DriverId");
-
-                    b.HasIndex("UserCreateId");
-
-                    b.HasIndex("UserUpdateId");
-
-                    b.HasIndex("VehicleId");
-
-                    b.ToTable("Refuelings");
                 });
 
             modelBuilder.Entity("Jcf.Challenge.Server.Models.User", b =>
@@ -256,37 +207,6 @@ namespace Jcf.Challenge.Server.Migrations
                     b.Navigation("UserCreate");
 
                     b.Navigation("UserUpdate");
-                });
-
-            modelBuilder.Entity("Jcf.Challenge.Server.Models.Refueling", b =>
-                {
-                    b.HasOne("Jcf.Challenge.Server.Models.Driver", "Driver")
-                        .WithMany()
-                        .HasForeignKey("DriverId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Jcf.Challenge.Server.Models.User", "UserCreate")
-                        .WithMany()
-                        .HasForeignKey("UserCreateId");
-
-                    b.HasOne("Jcf.Challenge.Server.Models.User", "UserUpdate")
-                        .WithMany()
-                        .HasForeignKey("UserUpdateId");
-
-                    b.HasOne("Jcf.Challenge.Server.Models.Vehicle", "Vehicle")
-                        .WithMany()
-                        .HasForeignKey("VehicleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Driver");
-
-                    b.Navigation("UserCreate");
-
-                    b.Navigation("UserUpdate");
-
-                    b.Navigation("Vehicle");
                 });
 
             modelBuilder.Entity("Jcf.Challenge.Server.Models.User", b =>

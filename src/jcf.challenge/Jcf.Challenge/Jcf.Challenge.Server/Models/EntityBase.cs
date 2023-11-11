@@ -17,10 +17,12 @@ namespace Jcf.Challenge.Server.Models
 
         public Guid? UserCreateId { get; set; }
 
+        [ForeignKey(nameof(UserCreateId))]
         public User? UserCreate { get; set; }
 
         public Guid? UserUpdateId { get; set; }
 
+        [ForeignKey(nameof(UserUpdateId))]
         public User? UserUpdate { get; set; }
 
         public void Remove(Guid? userUpdateId = null)
