@@ -8,6 +8,8 @@
     <PublishAssetsDirectory>$(MSBuildProjectDirectory)\dist\jcf.challenge.client\</PublishAssetsDirectory>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="src\app\pages\account\login-page\" />
     <Folder Include="src\app\pages\home\home-page\" />
+    <Folder Include="src\app\services\user\" />
   </ItemGroup>
 </Project>

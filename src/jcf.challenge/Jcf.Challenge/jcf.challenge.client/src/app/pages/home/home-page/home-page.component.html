@@ -6,10 +6,23 @@
 
     <div class="card">
         <div class="card-header">
-            Informações da empresa BTZ Transports
+            <strong>Informações da empresa BTZ Transports</strong>
         </div>
         <div class="card-body">
+            <ul>
+                <li><strong>Endereço: </strong> {{ basicInformations?.address }}</li>
+                <li><strong>Contato:</strong> {{ basicInformations?.fones }} - <a href="mailto:{{ basicInformations?.email }}">{{ basicInformations?.email }}</a> </li>
+                <li><strong>Horário de atendimento:</strong> {{ basicInformations?.horarioAtendimento }}</li>
+            </ul>
+
+            <hr />
+            <div class="">
+                <button type="button" class="btn btn-dark" [routerLink]="['/login']"><strong>Clique aqui para ir para a tela de login</strong></button>
+            </div>
             
+        </div>
+        <div class="card-footer">
+            No caso das informações sobre os dados da BTZ Transports não carregar, por favor, espere o backend inicar, depois atualize a página.
         </div>
     </div>
 

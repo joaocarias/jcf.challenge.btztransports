@@ -96,6 +96,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(option =>
+ option.AllowAnyOrigin()
+ .WithHeaders("accept", "content-type", "origin")
+ .AllowAnyMethod()
+ );
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
