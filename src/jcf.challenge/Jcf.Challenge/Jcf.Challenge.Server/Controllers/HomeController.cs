@@ -16,19 +16,18 @@ namespace Jcf.Challenge.Server.Controllers
         public async Task<IActionResult> GetInformations()
         {
             try
-            {
-                var informations = new List<string>
-                {
-                    "Endereço: Av. das Palmeiras, 40 – Maringá – PR",
-                    "Contato: (44) 3246-4144 / (44) 99999-8888 (whats) - sac@btztransports.com.br",
-                    "Horário de atendimento: seg/sex – 08h00 – 22h00"
-                };
-                return Ok(informations);
+            {                
+                return Ok(new { 
+                    Address = "Av. das Palmeiras, 40 – Maringá – PR",
+                    Fones = "(44) 3246-4144 / (44) 99999-8888 (whats)",
+                    Email = "sac@btztransports.com.br",
+                    HorarioAtendimento = "seg/sex – 08h00 – 22h00"
+                });
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                return BadRequest(ex.Message);  
+                return BadRequest(new { error = true, message = ex.Message });
             }
         }
     }

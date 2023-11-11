@@ -1,4 +1,5 @@
 using Jcf.Challenge.Server.Data.Contexts;
+using Jcf.Challenge.Server.Extensions.Helpers;
 using Jcf.Challenge.Server.Repositories;
 using Jcf.Challenge.Server.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -14,6 +15,8 @@ Console.WriteLine(builder.Configuration.GetSection("EnvironmentName").Value);
 builder.Services.AddControllers().AddNewtonsoftJson(x =>
     x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
 );
+
+ConfigurationHelper.Initialize(builder.Configuration);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options =>
