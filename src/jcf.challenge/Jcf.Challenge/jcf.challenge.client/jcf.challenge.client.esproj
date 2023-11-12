@@ -9,8 +9,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\app\components\shared\header-default\" />
+    <Folder Include="src\app\components\shared\navbar\" />
     <Folder Include="src\app\pages\account\login-page\" />
+    <Folder Include="src\app\pages\driver\driver-page\" />
     <Folder Include="src\app\pages\home\home-page\" />
+    <Folder Include="src\app\services\account\" />
     <Folder Include="src\app\services\user\" />
   </ItemGroup>
 </Project>

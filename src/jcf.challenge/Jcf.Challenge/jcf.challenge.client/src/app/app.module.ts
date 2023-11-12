@@ -10,6 +10,11 @@ import { DataService } from './services/data/data.service';
 import { LoginPageComponent } from './pages/account/login-page/login-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderDefaultComponent } from './components/shared/header-default/header-default.component';
+import { AppHomePageComponent } from './pages/app-home/app-home-page/app-home-page.component';
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { AuthService } from './services/account/auth.service';
+import { DriverPageComponent } from './pages/driver/driver-page/driver-page.component';
+import { DriverCreatePageComponent } from './pages/driver/driver-create-page/driver-create-page.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +22,10 @@ import { HeaderDefaultComponent } from './components/shared/header-default/heade
     HomePageComponent,
     LoginPageComponent,
     HeaderDefaultComponent,
+    AppHomePageComponent,
+    NavbarComponent,
+    DriverPageComponent,
+    DriverCreatePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +35,8 @@ import { HeaderDefaultComponent } from './components/shared/header-default/heade
     AppRoutingModule
   ],
   providers: [
-    DataService
+    DataService,
+    AuthService,
   ],
   bootstrap: [AppComponent]
 })

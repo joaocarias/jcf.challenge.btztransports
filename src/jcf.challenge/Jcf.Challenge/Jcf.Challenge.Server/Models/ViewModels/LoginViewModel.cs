@@ -5,7 +5,7 @@ namespace Jcf.Challenge.Server.Models.ViewModels
     public class LoginViewModel
     {
         [Required]
-        public string Email { get; set; } = string.Empty;
+        public string UserName { get; set; } = string.Empty;
 
         [Required]
         public string Password { get; set; } = string.Empty;
@@ -15,9 +15,9 @@ namespace Jcf.Challenge.Server.Models.ViewModels
 
         }
 
-        public LoginViewModel(string email, string password)
+        public LoginViewModel(string userName, string password)
         {
-            Email = email;
+            UserName = userName;
             Password = password;
         }
     }

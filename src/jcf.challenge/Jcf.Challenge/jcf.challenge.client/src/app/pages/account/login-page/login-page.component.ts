@@ -11,6 +11,7 @@ import { DataService } from "../../../services/data/data.service";
 })
 export class LoginPageComponent implements OnInit {
   public form: FormGroup;
+  public messageError: string;
 
   constructor(
     private router: Router,
@@ -30,14 +31,34 @@ export class LoginPageComponent implements OnInit {
         Validators.required
       ])]
     });
+
+    this.messageError = "";
   }
 
-    ngOnInit(): void {
+  ngOnInit(): void {
     
-    }
+  }
+
+  submit(): void {
+    this
+      .dataService
+      .authenticate(this.form.value)
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          this.setUser(new User(data.user.Id, data.user.name, data.user.email, null, data.user.firstName), data.token);
+        },
+        error: (err) => {
+          console.log(err);
+          this.messageError = err.error.message;
+          Security.clear();
+        }
+      });      
+  }
 
   setUser(user: User, token: string) {
     Security.set(user, token);
-    this.router.navigate(['/manager']);
+    this.messageError = "";
+    this.router.navigate(['/app']);
   }
 }

@@ -29,7 +29,7 @@ namespace Jcf.Challenge.Server.Controllers
         {
             try
             {
-                var user = await _userRepository.AuthenticateAsync(viewModel.Email, PasswordUtil.CreateHashMD5(viewModel.Password));
+                var user = await _userRepository.AuthenticateAsync(viewModel.UserName, PasswordUtil.CreateHashMD5(viewModel.Password));
                 if (user == null) return BadRequest(new { error = true, message = "Usuário ou Senha Inválida!" });
 
                 return Ok(new

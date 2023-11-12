@@ -1,0 +1,39 @@
+<div class="container d-flex align-items-center">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Cadastro
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" [routerLink]="['/app/motoristas']">Motoristas</a></li>
+                            <li><a class="dropdown-item" href="#">Veículos</a></li>
+
+                            <li class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Usuários</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Abastecimentos</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" (click)="logout()">
+                            usuario:   {{ user?.firstName }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" >Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</div>

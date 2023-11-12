@@ -4,6 +4,6 @@ export class User {
       public name: string,
       public email: string | null,
       public password: string | null,
-      public firstName: string = ""
+      public firstName: string = ""      
   ) { }
 }
