@@ -3,6 +3,7 @@ using System;
 using Jcf.Challenge.Server.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Jcf.Challenge.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231112003651_UserAddRole")]
+    partial class UserAddRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -188,30 +191,6 @@ namespace Jcf.Challenge.Server.Migrations
                     b.HasIndex("UserUpdateId");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("08dbd59a-2683-4c67-8e16-689ba2648545"),
-                            CreatedAt = new DateTime(2023, 11, 12, 0, 46, 35, 210, DateTimeKind.Utc).AddTicks(2221),
-                            Email = "admin@email.com",
-                            IsActive = true,
-                            Name = "Administrador Usuário",
-                            Password = "4BADAEE57FED5610012A296273158F5F",
-                            Role = "ADMIN",
-                            UserName = "admin@email.com"
-                        },
-                        new
-                        {
-                            Id = new Guid("08dbdc08-56e1-4e90-805f-db29361e075e"),
-                            CreatedAt = new DateTime(2023, 11, 12, 0, 46, 35, 210, DateTimeKind.Utc).AddTicks(2780),
-                            Email = "basico@email.com",
-                            IsActive = true,
-                            Name = "Básico Usuário",
-                            Password = "4BADAEE57FED5610012A296273158F5F",
-                            Role = "BASIC",
-                            UserName = "basico@email.com"
-                        });
                 });
 
             modelBuilder.Entity("Jcf.Challenge.Server.Models.Vehicle", b =>

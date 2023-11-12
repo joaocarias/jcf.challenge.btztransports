@@ -1,4 +1,5 @@
 ﻿using Jcf.Challenge.Server.Enums;
+using Jcf.Challenge.Server.Extensions;
 using Jcf.Challenge.Server.Models;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -23,6 +24,8 @@ namespace Jcf.Challenge.Server.Data.Contexts
                     x => JsonConvert.DeserializeObject<List<EDriversLicenseCategory>>(x)
                 );
             });
+
+            modelBuilder.Seed();
         }
     }
 }

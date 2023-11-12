@@ -37,6 +37,6 @@ namespace Jcf.Challenge.Server.Models
             IsActive = true;
             CreatedAt = DateTime.UtcNow;
             UserCreateId = userCreateId;  
-        }        
+        }
     }
 }

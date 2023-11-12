@@ -21,6 +21,7 @@ namespace Jcf.Challenge.Server.Services
                   {
                     new Claim("USER_ID", user.Id.ToString()),
                     new Claim(ClaimTypes.Name, user.Email),
+                    new Claim(ClaimTypes.Role, user.Role.ToUpper()),
                     new Claim("USER_NAME", user.Name)
                 });
 

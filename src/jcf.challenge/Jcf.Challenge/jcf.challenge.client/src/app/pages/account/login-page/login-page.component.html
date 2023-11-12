@@ -1,36 +1,55 @@
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card">
-            <div class="card-header">@ViewData["Title"]</div>
+<div class="container">
+    <h3>BTZ Transports</h3>
+</div>
 
-            <div class="card-body">
-                <form method="post">
-                    <div asp-validation-summary="All" class="text-danger"></div>
+<hr />
 
-                    <div class="mb-3 row">
-                        <label asp-for="Email" class="col-md-4 col-form-label text-md-right"></label>
-                        <div class="col-md-6">
-                            <input asp-for="Email" class="form-control" />
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Login</div>
+
+                <div class="card-body">
+
+
+                    <form [formGroup]="form">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                        <div class="mb-3 row">
+                            <label class="col-md-4 col-form-label text-md-right">E-mail</label>
+                            <div class="col-md-6">
+                                <input class="form-control"
+                                       formControlName="username"
+                                       [ngClass]="{ 'is-invalid': (!form.controls.username.valid && !form.controls.username.pristine) }"
+                                       placeholder="usuario@email.com" />
+                            </div>
+                            <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
 
-                    <div class="mb-3 row">
-                        <label asp-for="Password" class="col-md-4 col-form-label text-md-right"></label>
-                        <div class="col-md-6">
-                            <input asp-for="Password" class="form-control" />
+                        <div class="mb-3 row">
+                            <label class="col-md-4 col-form-label text-md-right">Senha</label>
+                            <div class="col-md-6">
+                                <input class="form-control"
+                                       formControlName="password"
+                                       [ngClass]="{ 'is-invalid': (!form.controls.password.valid && !form.controls.password.pristine) }"
+                                       placeholder="********" />
+                            </div>
                         </div>
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
 
-                    <div class="row mb-0">
-                        <div class="col-md-8 offset-md-4">
-                            <button type="submit" class="btn btn-primary">
-                                Login
-                            </button>
+                        <div class="row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Login
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+
+
+                </div>
             </div>
         </div>
     </div>
