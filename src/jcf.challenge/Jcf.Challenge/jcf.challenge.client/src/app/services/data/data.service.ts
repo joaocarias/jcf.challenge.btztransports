@@ -1,9 +1,10 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
 import { BasicInformations } from "../../models/basic-informations.model";
 import { Security } from "../../utils/security";
 import { Driver } from "../../models/driver";
+import { Vehiche } from "../../models/vehicle";
 
 @Injectable({
   providedIn: 'root'
@@ -39,10 +40,25 @@ export class DataService {
   }
 
   vehicleGetAll() {
-    return this.http.get<Array<Driver>>(`${this.urlApi}/Vehicle/GetAll`, { headers: this.composeHeaders() });
+    return this.http.get<Array<Vehiche>>(`${this.urlApi}/Vehicle/GetAll`, { headers: this.composeHeaders() });
   }
 
   vehicleCreate(data: any) {
     return this.http.post(`${this.urlApi}/Vehicle/Create`, data, { headers: this.composeHeaders() });
+  }
+
+  vehicheGet(id: any) {
+    let params = new HttpParams().set("id", id);
+    return this.http.get<Vehiche>(`${this.urlApi}/Vehicle/Get`, { headers: this.composeHeaders(), params: params });
+  }
+
+  vehicleUpdate(data: any) {
+    let params = new HttpParams().set("id", data.id);
+    return this.http.put(`${this.urlApi}/Vehicle/Update`, data, { headers: this.composeHeaders(), params: params });
+  }
+
+  vehicleDelete(id: any) {
+    let params = new HttpParams().set("id", id);
+    return this.http.delete(`${this.urlApi}/Vehicle/Delete`, { headers: this.composeHeaders(), params: params });
   }
 }

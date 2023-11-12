@@ -9,12 +9,12 @@ namespace Jcf.Challenge.Server.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public class VehicleControlher : MyController
+    public class VehicleController : MyController
     {
-        private readonly ILogger<VehicleControlher> _logger;
+        private readonly ILogger<VehicleController> _logger;
         private readonly IVehicleRepository _vehicleRepository;
 
-        public VehicleControlher(ILogger<VehicleControlher> logger, IVehicleRepository vehicleRepository)
+        public VehicleController(ILogger<VehicleController> logger, IVehicleRepository vehicleRepository)
         {
             _logger = logger;
             _vehicleRepository = vehicleRepository;

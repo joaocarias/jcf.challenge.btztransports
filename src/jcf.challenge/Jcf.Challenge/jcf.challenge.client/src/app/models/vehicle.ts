@@ -1,6 +1,6 @@
 export class Vehiche {
   constructor(
-    public _id: string | null,
+    public id: string | null,
     public name: string,
     public plate: Number,
     public fuelType: Number,

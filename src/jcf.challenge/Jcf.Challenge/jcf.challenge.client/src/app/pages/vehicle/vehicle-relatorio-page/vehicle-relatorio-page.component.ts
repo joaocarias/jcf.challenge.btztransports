@@ -1,20 +1,17 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { DataService } from "../../../services/data/data.service";
 import { Vehiche } from "../../../models/vehicle";
+import { DataService } from "../../../services/data/data.service";
 
 @Component({
-  selector: 'app-vehicle-page',
-  templateUrl: './vehicle-page.component.html'
+  selector: 'app-vehicle-relatorio-page',
+  templateUrl: './vehicle-relatorio-page.component.html'
 })
-export class VehiclePageComponent implements OnInit {
+export class VehicleRelatorioPageComponent implements OnInit {
   public vehicles?: Array<Vehiche> | null;
 
-  constructor(
-    private router: Router,
+  constructor(   
     private dataService: DataService
-  )
-  {
+  ) {
 
   }
 
@@ -27,7 +24,7 @@ export class VehiclePageComponent implements OnInit {
           this.vehicles = data;
         },
         error: (err) => {
-          
+
         }
       });
   }

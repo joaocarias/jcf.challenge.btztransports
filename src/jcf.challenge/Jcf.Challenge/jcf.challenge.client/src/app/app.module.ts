@@ -18,6 +18,10 @@ import { DriverCreatePageComponent } from './pages/driver/driver-create-page/dri
 import { MaskDirective } from './directives/mask.dirctive';
 import { VehiclePageComponent } from './pages/vehicle/vehicle-page/vehicle-page.component';
 import { VehicleCreatePageComponent } from './pages/vehicle/vehicle-create-page/vehicle-create-page.component';
+import { VehicleDetailPageComponent } from './pages/vehicle/vehicle-detail-page/vehicle-detail-page.component';
+import { VehicleEditPageComponent } from './pages/vehicle/vehicle-edit-page/vehicle-edit-page.component';
+import { VehicleRelatorioPageComponent } from './pages/vehicle/vehicle-relatorio-page/vehicle-relatorio-page.component';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +36,9 @@ import { VehicleCreatePageComponent } from './pages/vehicle/vehicle-create-page/
     DriverCreatePageComponent,
     VehiclePageComponent,
     VehicleCreatePageComponent,
+    VehicleDetailPageComponent,
+    VehicleEditPageComponent,
+    VehicleRelatorioPageComponent,
   ],
   imports: [
     BrowserModule,
