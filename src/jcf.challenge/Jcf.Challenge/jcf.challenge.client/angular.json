@@ -68,6 +68,7 @@
           },
           "defaultConfiguration": "development",
           "options": {
+            "browserTarget": "jcf.challenge.client:build",
             "proxyConfig": "src/proxy.conf.js"
           }
         },

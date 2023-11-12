@@ -1,0 +1,112 @@
+<app-header-default></app-header-default>
+
+<app-navbar></app-navbar>
+
+<div class="container mt-3">
+
+    <nav aria-label="breadcrumb ">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a [routerLink]="['/app']">Home</a></li>
+            <li class="breadcrumb-item"><a [routerLink]="['/app/motoristas']">Veículo</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Cadastro</li>
+        </ol>
+    </nav>
+
+    <div class="card">
+        <div class="card-header">
+            Cadastrar Motorista
+        </div>
+        <div class="card-body">
+
+            <form [formGroup]="form">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="mb-3 row">
+
+                    <div class="col-md-3">
+                        <label class="col-form-label">Placa</label>
+                        <input class="form-control"
+                               formControlName="plate"
+                               [ngClass]="{ 'is-invalid': (!form.controls.plate.valid && !form.controls.plate.pristine) }"
+                               placeholder="RGN2010" />
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="col-form-label">Nome</label>
+                        <input class="form-control"
+                               formControlName="name"
+                               [ngClass]="{ 'is-invalid': (!form.controls.name.valid && !form.controls.name.pristine) }"
+                               placeholder="Nome Completo" />
+
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="col-form-label">Tipo de Combustível</label>
+                        <select class="form-control"
+                                formControlName="fuelType">
+                            <option value="" selected></option>
+                            <option value="1">Gasolina</option>
+                            <option value="2">Etanol</option>
+                            <option value="3">Diesel</option>
+                            }
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="mb-3 row">
+                    <div class="col-md-6">
+                        <label class="col-form-label">Fabricante</label>
+                        <input class="form-control"
+                               formControlName="manufacturer"
+                               [ngClass]="{ 'is-invalid': (!form.controls.manufacturer.valid && !form.controls.manufacturer.pristine) }"
+                               placeholder="Fabricante" />
+
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="col-form-label">Ano de Fabricação</label>
+                        <input class="form-control"
+                               formControlName="yearManufacture"
+                               mask="####"
+                               [ngClass]="{ 'is-invalid': (!form.controls.yearManufacture.valid && !form.controls.yearManufacture.pristine) }"
+                               placeholder="2023" />
+
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="col-form-label">Capacidade</label>
+                        <input class="form-control"
+                               formControlName="maxCapacityFuel"
+                               mask="####"
+                               [ngClass]="{ 'is-invalid': (!form.controls.yearManufacture.valid && !form.controls.yearManufacture.pristine) }"
+                               placeholder="100" />
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <div class="col-md-12">
+                        <label class="col-form-label">Observações</label>
+                        <input class="form-control"
+                               formControlName="observation"
+                               [ngClass]="{ 'is-invalid': (!form.controls.observation.valid && !form.controls.observation.pristine) }"
+                               placeholder="Observação" />
+
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="mb-3 row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="submit()">Cadastrar</button>
+                        <button type="button" class="btn btn-warning" [routerLink]="['/app/veiculos']">Cancelar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

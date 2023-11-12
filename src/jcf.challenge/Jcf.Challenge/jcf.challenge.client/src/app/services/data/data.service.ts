@@ -33,8 +33,16 @@ export class DataService {
     return this.http.get<Array<Driver>>(`${this.urlApi}/Driver/GetAll`, { headers: this.composeHeaders() });
   }
 
+  driverCreate(data: any)
+  {
+    return this.http.post(`${this.urlApi}/Driver/Create`, data, { headers: this.composeHeaders() });
+  }
 
+  vehicleGetAll() {
+    return this.http.get<Array<Driver>>(`${this.urlApi}/Vehicle/GetAll`, { headers: this.composeHeaders() });
+  }
 
-
-
+  vehicleCreate(data: any) {
+    return this.http.post(`${this.urlApi}/Vehicle/Create`, data, { headers: this.composeHeaders() });
+  }
 }

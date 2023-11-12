@@ -6,9 +6,8 @@ export class Driver {
     public licenseNumber: string,
     public licenseCategories: Array<string>,
     public dataOfBirth: Date,
-    public status: boolean,
-    public createdAt: Date     
+    public status: boolean    
   ) {    
-
+    status = true;
   }
 }

@@ -15,10 +15,14 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { AuthService } from './services/account/auth.service';
 import { DriverPageComponent } from './pages/driver/driver-page/driver-page.component';
 import { DriverCreatePageComponent } from './pages/driver/driver-create-page/driver-create-page.component';
+import { MaskDirective } from './directives/mask.dirctive';
+import { VehiclePageComponent } from './pages/vehicle/vehicle-page/vehicle-page.component';
+import { VehicleCreatePageComponent } from './pages/vehicle/vehicle-create-page/vehicle-create-page.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    MaskDirective,
+    AppComponent,    
     HomePageComponent,
     LoginPageComponent,
     HeaderDefaultComponent,
@@ -26,6 +30,8 @@ import { DriverCreatePageComponent } from './pages/driver/driver-create-page/dri
     NavbarComponent,
     DriverPageComponent,
     DriverCreatePageComponent,
+    VehiclePageComponent,
+    VehicleCreatePageComponent,
   ],
   imports: [
     BrowserModule,

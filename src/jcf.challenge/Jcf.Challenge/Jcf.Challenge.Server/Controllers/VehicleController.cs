@@ -1,4 +1,5 @@
 ﻿using Jcf.Challenge.Server.Models;
+using Jcf.Challenge.Server.Models.ViewModels;
 using Jcf.Challenge.Server.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
@@ -22,14 +23,14 @@ namespace Jcf.Challenge.Server.Controllers
         #region Crud
 
         [HttpPost]
-        public async Task<IActionResult> Create([Required] Vehicle vehicle)
+        public async Task<IActionResult> Create([Required] CreateVehicleViewModel model)
         {
             try
             {
-                if (await _vehicleRepository.PlateInUse(vehicle.Plate))
-                    return Conflict(new { StatusCode = HttpStatusCode.Conflict, error = true, message = "Documento CPF já cadastrado!", vehicle.Plate });
+                if (await _vehicleRepository.PlateInUse(model.Plate))
+                    return Conflict(new { StatusCode = HttpStatusCode.Conflict, error = true, message = "Placa já cadastrado!", model.Plate });
 
-                vehicle.UserCreateId = GetUserIdFromToken();
+                var vehicle = new Vehicle(model.Plate, model.Name, model.FuelType, model.Manufacturer, model.YearManufacture, model.MaxCapacityFuel, model.Observation, GetUserIdFromToken());
                 vehicle = await _vehicleRepository.CreateAsync(vehicle);
                 if (vehicle is null) BadRequest(new { statusCode = HttpStatusCode.BadGateway, error = true, message = "Erro ao salvar o Veículo!" });
 

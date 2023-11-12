@@ -1,1 +1,131 @@
-console.log("Hello World!")
+<app-header-default></app-header-default>
+
+<app-navbar></app-navbar>
+
+<div class="container mt-3">
+
+    <nav aria-label="breadcrumb ">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a [routerLink]="['/app']">Home</a></li>
+            <li class="breadcrumb-item"><a [routerLink]="['/app/motoristas']">Motoristas</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Cadastro</li>
+        </ol>
+    </nav>
+
+    <div class="card">
+        <div class="card-header">
+            Cadastrar Motorista
+        </div>
+        <div class="card-body">
+
+            <form [formGroup]="form">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="mb-3 row">
+
+                    <div class="col-md-6">
+                        <label class="col-form-label">Nome</label>
+                        <input class="form-control"
+                               formControlName="name"
+                               [ngClass]="{ 'is-invalid': (!form.controls.name.valid && !form.controls.name.pristine) }"
+                               placeholder="Nome Completo" />
+
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="col-form-label">CPF</label>
+                        <input class="form-control"
+                               formControlName="documentNumber"
+                               mask="###.###.###-##"
+                               [ngClass]="{ 'is-invalid': (!form.controls.documentNumber.valid && !form.controls.documentNumber.pristine) }"
+                               placeholder="999.999.999-99" />
+
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="col-form-label">Data de Nascimento</label>
+                        <input class="form-control"
+                               formControlName="dataOfBirth"
+                               mask="####/##/##"
+                               [ngClass]="{ 'is-invalid': (!form.controls.dataOfBirth.valid && !form.controls.dataOfBirth.pristine) }"
+                               placeholder="YYYY/mm/DD" />
+
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+
+                    <div class="col-md-3">
+                        <label class="col-form-label">CNH</label>
+                        <input class="form-control"
+                               formControlName="licenseNumber"
+                               mask="###.###.###-##"
+                               [ngClass]="{ 'is-invalid': (!form.controls.licenseNumber.valid && !form.controls.licenseNumber.pristine) }"
+                               placeholder="999.999.999-99" />
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="col-form-label">Categoria CNH</label>
+                        <div class="col-md-12">
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" formControlName="licenseCategories" value="1">
+                                <label class="form-check-label" for="licenseCategoriesACC">ACC</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" formControlName="licenseCategories" value="1">
+                                <label class="form-check-label" for="licenseCategoriesA">A</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" formControlName="licenseCategories" value="3" checked>
+                                <label class="form-check-label" for="licenseCategoriesB">B</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" formControlName="licenseCategories" value="4">
+                                <label class="form-check-label" for="licenseCategoriesC">C</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" formControlName="licenseCategories" value="5">
+                                <label class="form-check-label" for="licenseCategoriesD">D</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" formControlName="licenseCategories" value="6">
+                                <label class="form-check-label" for="licenseCategoriesE">E</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="col-form-label">Status</label>
+                        <div class="col-md-12">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="status" formControlName="status" ng-value="true" checked>
+                                <label class="form-check-label" for="inlineRadio1">Ativo</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="status" id="inlineRadio2" formControlName="status" ng-value="true">
+                                <label class="form-check-label" for="inlineRadio2">Inativo</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="mb-3 row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="submit()" >Cadastrar</button>
+                        <button type="button" class="btn btn-warning" [routerLink]="['/app/motoristas']">Cancelar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

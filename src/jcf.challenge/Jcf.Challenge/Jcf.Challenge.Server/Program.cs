@@ -98,7 +98,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors(option =>
  option.AllowAnyOrigin()
- .WithHeaders("accept", "content-type", "origin")
+ .WithHeaders("accept", "content-type", "origin", "authorization")
  .AllowAnyMethod()
  );
 
