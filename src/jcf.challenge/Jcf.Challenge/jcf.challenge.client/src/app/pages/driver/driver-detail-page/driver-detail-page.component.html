@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <strong>Data de Aniversário: </strong> {{ driver?.dataOfBirth }}
+                    <strong>Data de Aniversário: </strong> {{ driver?.dateOfBirth }}
                 </div>
 
             </div>
@@ -42,11 +42,11 @@
                 </div>
 
                 <div class="col-md-4">
-                    <strong>Categoria: </strong> 
+                    <strong>Categoria: </strong>  {{ myLicense }}
                 </div>
 
                 <div class="col-md-4">
-                    <strong>Status: </strong> {{ driver?.status }}
+                    <strong>Status: </strong> {{ driver?.status ? "Ativo" : "Inativo" }}
                 </div>
             </div>
 
@@ -54,7 +54,7 @@
 
             <div class="mb-3 row">
                 <div class="col-md-12">
-                    <button type="button" class="btn btn-primary" [routerLink]="['/app/motoristas/motoristas', driver?.id ]">Editar</button>
+                    <button type="button" class="btn btn-primary" [routerLink]="['/app/motoristas/editar', driver?.id ]">Editar</button>
                     <button type="button" class="btn btn-danger" (click)="delete(driver?.id)">Deletar</button>
                     <button type="button" class="btn btn-warning" [routerLink]="['/app/motoristas']">Cancelar</button>
                 </div>
@@ -63,7 +63,6 @@
             <hr />
 
             <p>Obs: o botão de Deletar não tem confirmação da ação, se clicar nele, vai remover o registro!</p>
-            <p>A categoria do CNH não deu tempo para implementar no font, mas foi implementada no backend</p>
         </div>
     </div>
 </div>

@@ -108,7 +108,7 @@ namespace Jcf.Challenge.Server.Controllers
             if (driver is null)
                 return NoContent();
 
-            driver.Update(updateDriver.Name, updateDriver.DocumentNumber, updateDriver.LicenseNumber, updateDriver.LicenseCategories, updateDriver.DateOfBirth, updateDriver.Status, GetUserIdFromToken());
+            driver.Update(updateDriver.Name, updateDriver.DocumentNumber, updateDriver.LicenseNumber, updateDriver.LicenseCategory, updateDriver.DateOfBirth, updateDriver.Status, GetUserIdFromToken());
             driver = _driverRepository.Update(driver);
             if (driver is null) return BadRequest(new { statusCode = HttpStatusCode.BadGateway, error = true, message = "Erro ao atualizar o Motorista!" });            
             return Ok(new

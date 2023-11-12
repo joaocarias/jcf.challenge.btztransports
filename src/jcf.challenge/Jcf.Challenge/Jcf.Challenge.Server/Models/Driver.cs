@@ -29,9 +29,8 @@ namespace Jcf.Challenge.Server.Models
             set => _licenseNumber = value.OnlyNumbers();
         }
 
-        [Required]
-        [Column(TypeName = "VARCHAR(50)")]
-        public List<EDriversLicenseCategory> LicenseCategories { get; set; }
+        [Required]        
+        public EDriversLicenseCategory LicenseCategory { get; set; }
 
         [Required]
         public DateTime DateOfBirth { get; set; }
@@ -42,23 +41,23 @@ namespace Jcf.Challenge.Server.Models
         [NotMapped]
         public string FirstName { get { return Name.FirstPart(); } }
 
-        public Driver(string name, string documentNumber, string licenseNumber, List<EDriversLicenseCategory> licenseCategories, DateTime dateOfBirth, bool status, Guid? userCreateId = null)
+        public Driver(string name, string documentNumber, string licenseNumber, EDriversLicenseCategory licenseCategory, DateTime dateOfBirth, bool status, Guid? userCreateId = null)
             : base (userCreateId)
         {
             Name = name;
             DocumentNumber = documentNumber;            
-            LicenseNumber = licenseNumber;            
-            LicenseCategories = licenseCategories;
+            LicenseNumber = licenseNumber;
+            LicenseCategory = licenseCategory;
             DateOfBirth = dateOfBirth;
             Status = status;
         }
 
-        public void Update(string name, string documentNumber, string licenseNumber, List<EDriversLicenseCategory> licenseCategories, DateTime dateOfBirth, bool status, Guid? userUpdateId = null)            
+        public void Update(string name, string documentNumber, string licenseNumber, EDriversLicenseCategory licenseCategory, DateTime dateOfBirth, bool status, Guid? userUpdateId = null)            
         {
             Name = name;
             DocumentNumber = documentNumber;
             LicenseNumber = licenseNumber;
-            LicenseCategories = licenseCategories;
+            LicenseCategory = licenseCategory;
             DateOfBirth = dateOfBirth;
             Status = status;
 

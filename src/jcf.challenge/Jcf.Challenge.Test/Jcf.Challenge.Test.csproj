@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UnitTests\" />
+    <ProjectReference Include="..\Jcf.Challenge\Jcf.Challenge.Server\Jcf.Challenge.Server.csproj" />
   </ItemGroup>
 
 </Project>

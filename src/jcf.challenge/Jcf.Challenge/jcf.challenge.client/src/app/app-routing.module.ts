@@ -14,6 +14,8 @@ import { VehicleRelatorioPageComponent } from './pages/vehicle/vehicle-relatorio
 import { DriverDetailPageComponent } from './pages/driver/driver-detail-page/driver-detail-page.component';
 import { RefuelingPageComponent } from './pages/refueling/refueling-page/refueling-page.component';
 import { RefuelingCreatePageComponent } from './pages/refueling/refueling-create-page/refueling-create-page.component';
+import { DriverEditPageComponent } from './pages/driver/driver-edit-page/driver-edit-page.component';
+import { RefuelingRelatorioPageComponent } from './pages/refueling/refueling-relatorio-page/refueling-relatorio-page.component';
 
 
 const routes: Routes = [
@@ -32,6 +34,7 @@ const routes: Routes = [
           { path: '', component: DriverPageComponent },
           { path: "cadastrar", component: DriverCreatePageComponent },
           { path: ":id", component: DriverDetailPageComponent },
+          { path: "editar/:id", component: DriverEditPageComponent }, 
         ]        
       },
       {
@@ -47,7 +50,8 @@ const routes: Routes = [
       {
         path: 'relatorios',
         children: [
-          { path: "veiculos", component: VehicleRelatorioPageComponent }
+          { path: "veiculos", component: VehicleRelatorioPageComponent },
+          { path: "abastecimentos", component: RefuelingRelatorioPageComponent }
         ]
       },
 

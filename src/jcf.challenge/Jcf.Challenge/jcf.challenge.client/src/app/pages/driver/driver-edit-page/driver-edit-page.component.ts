@@ -57,11 +57,11 @@ export class DriverEditPageComponent implements OnInit {
               Validators.required
             ])],
 
-            licenseCategories: [data.licenseCategories, Validators.compose([
+            licenseCategory: [data.licenseCategory, Validators.compose([
               Validators.required
             ])],
 
-            dataOfBirth: [data.dataOfBirth, Validators.compose([
+            dateOfBirth: [data.detaOfBirth, Validators.compose([
               Validators.required
             ])],
 

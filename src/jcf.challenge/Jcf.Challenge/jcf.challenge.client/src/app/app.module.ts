@@ -24,6 +24,8 @@ import { VehicleRelatorioPageComponent } from './pages/vehicle/vehicle-relatorio
 import { DriverDetailPageComponent } from './pages/driver/driver-detail-page/driver-detail-page.component';
 import { RefuelingPageComponent } from './pages/refueling/refueling-page/refueling-page.component';
 import { RefuelingCreatePageComponent } from './pages/refueling/refueling-create-page/refueling-create-page.component';
+import { DriverEditPageComponent } from './pages/driver/driver-edit-page/driver-edit-page.component';
+import { RefuelingRelatorioPageComponent } from './pages/refueling/refueling-relatorio-page/refueling-relatorio-page.component';
 
 
 @NgModule({
@@ -37,6 +39,7 @@ import { RefuelingCreatePageComponent } from './pages/refueling/refueling-create
     NavbarComponent,
     DriverPageComponent,
     DriverCreatePageComponent,
+    DriverEditPageComponent,
     VehiclePageComponent,
     VehicleCreatePageComponent,
     VehicleDetailPageComponent,
@@ -45,6 +48,7 @@ import { RefuelingCreatePageComponent } from './pages/refueling/refueling-create
     DriverDetailPageComponent,
     RefuelingPageComponent,
     RefuelingCreatePageComponent,
+    RefuelingRelatorioPageComponent,
   ],
   imports: [
     BrowserModule,

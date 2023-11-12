@@ -10,7 +10,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@ang
 export class DriverCreatePageComponent implements OnInit {
   public form: FormGroup;
 
-  public dataLincenses = [
+  public dataLicenses = [
     { id: 1, name: 'ACC' },
     { id: 2, name: 'A' },
     { id: 3, name: 'B' },
@@ -45,11 +45,11 @@ export class DriverCreatePageComponent implements OnInit {
         Validators.required
       ])],
 
-      licenseCategories: [[2], Validators.compose([        
+      licenseCategory: ['', Validators.compose([
         Validators.required
-      ])],
+      ])], 
 
-      dataOfBirth: ['', Validators.compose([        
+      dateOfBirth: ['', Validators.compose([        
         Validators.required
       ])],
 
@@ -57,16 +57,14 @@ export class DriverCreatePageComponent implements OnInit {
         Validators.required
       ])],
 
-      orders: new FormArray([])
 
     });
-
   }
 
   ngOnInit(): void {
     
   }
-
+  
   submit(): void {
       this
         .dataService
@@ -86,7 +84,5 @@ export class DriverCreatePageComponent implements OnInit {
     return this.form.controls.orders as FormArray;
   }
 
-  private addCheckboxes() {
-    this.dataLincenses.forEach(() => this.ordersFormArray.push(new FormControl(false)));
-  }
+  
 }

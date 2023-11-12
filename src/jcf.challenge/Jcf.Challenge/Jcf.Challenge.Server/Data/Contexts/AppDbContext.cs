@@ -17,13 +17,13 @@ namespace Jcf.Challenge.Server.Data.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Driver>(e =>
-            {
-                e.Property(x => x.LicenseCategories).HasColumnType("VARCHAR(50)").HasConversion(
-                    x => JsonConvert.SerializeObject(x),
-                    x => JsonConvert.DeserializeObject<List<EDriversLicenseCategory>>(x)
-                );
-            });
+            //modelBuilder.Entity<Driver>(e =>
+            //{
+            //    e.Property(x => x.LicenseCategories).HasColumnType("VARCHAR(50)").HasConversion(
+            //        x => JsonConvert.SerializeObject(x),
+            //        x => JsonConvert.DeserializeObject<List<EDriversLicenseCategory>>(x)
+            //    );
+            //});
 
             modelBuilder.Seed();
         }

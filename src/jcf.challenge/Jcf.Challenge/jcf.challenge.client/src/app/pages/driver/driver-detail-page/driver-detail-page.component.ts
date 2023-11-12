@@ -9,13 +9,42 @@ import { Driver } from "../../../models/driver";
 })
 export class DriverDetailPageComponent implements OnInit {
   public driver?: Driver | null;
+  public licenses = [
+    'ACC',
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+  ];
+  public myLicense: string | null;
 
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
     private dataService: DataService
   ) {
+    this.myLicense = "";
+  }
 
+  getLicenseCategoryDescription(_licenseCategory: any): string {
+    switch (_licenseCategory) {
+      case 1:
+        return 'ACC';
+      case 2:
+        return 'A';
+      case 3:
+        return 'B';
+      case 4:
+        return 'C';
+      case 5:
+        return 'D';
+      case 6:
+        return 'E';
+
+      default:
+        return 'Categoria Desconhecida';
+    }
   }
 
   ngOnInit(): void {
@@ -27,6 +56,7 @@ export class DriverDetailPageComponent implements OnInit {
       .subscribe({
         next: (data: any) => {
           this.driver = data;
+          this.myLicense = this.getLicenseCategoryDescription(this.driver?.licenseCategory);
         },
         error: (err) => {
 
@@ -41,11 +71,12 @@ export class DriverDetailPageComponent implements OnInit {
       .driverDelete(_id)
       .subscribe({
         next: (data: any) => {
-          this.router.navigate(['/app/drivers']);
+          this.router.navigate(['/app/motoristas']);
         },
         error: (err) => {
 
         }
       });
   }
-}
+
+ }
