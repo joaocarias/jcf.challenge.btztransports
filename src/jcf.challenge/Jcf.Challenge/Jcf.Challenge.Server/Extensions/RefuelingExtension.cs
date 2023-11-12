@@ -11,7 +11,8 @@ namespace Jcf.Challenge.Server.Extensions
         {
             try
             {
-                return refueling.Quantity <= vehicle.MaxCapacityFuel;
+                var x = refueling.Quantity <= vehicle.MaxCapacityFuel;
+                return x;
             }
             catch (Exception ex)
             {
@@ -25,7 +26,8 @@ namespace Jcf.Challenge.Server.Extensions
         {
             try
             {
-                return refueling.FuelType.Equals(vehicle.FuelType);
+                var t = refueling.FuelType.Equals(vehicle.FuelType);
+                return t;
             }
             catch (Exception ex)
             {
@@ -40,7 +42,8 @@ namespace Jcf.Challenge.Server.Extensions
             try
             {
                 double? valueDefault = double.Parse(ConfigurationHelper.GetConfiguration($"FuelTypes:{refueling.FuelType.ToString()}:Value"));
-                return valueDefault is null ? -1 : refueling.Quantity * valueDefault.GetValueOrDefault();   
+                var paid = valueDefault is null ? -1 : refueling.Quantity * valueDefault.GetValueOrDefault();
+                return paid;
             }
             catch (Exception ex)
             {

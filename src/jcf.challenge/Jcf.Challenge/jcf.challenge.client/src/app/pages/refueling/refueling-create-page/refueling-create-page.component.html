@@ -1,0 +1,99 @@
+<app-header-default></app-header-default>
+
+<app-navbar></app-navbar>
+
+<div class="container mt-3">
+
+    <nav aria-label="breadcrumb ">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a [routerLink]="['/app']">Home</a></li>
+            <li class="breadcrumb-item"><a [routerLink]="['/app/motoristas']">Abastecimentos</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Cadastro</li>
+        </ol>
+    </nav>
+
+    <div class="card">
+        <div class="card-header">
+            Cadastrar abastecimento
+        </div>
+        <div class="card-body">
+
+
+            <div *ngIf="messageError" class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ messageError }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <form [formGroup]="form">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="mb-3 row">
+
+                    <div class="col-md-3">
+                        <label class="col-form-label">Veículo</label>
+                        <select class="form-control"
+                                formControlName="vehicleId">
+                            <option value=""></option>
+                            <option *ngFor="let v of vehicles" [value]="v.id">{{ v.name }} </option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="col-form-label">Motorista</label>
+                        <select class="form-control"
+                                formControlName="driverId">
+                            <option value=""></option>
+                            <option *ngFor="let d of drivers" [value]="d.id">{{ d.name }} </option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="col-form-label">Data</label>
+                        <input class="form-control"
+                               formControlName="dateRefueling"
+                               mask="####/##/##"
+                               [ngClass]="{ 'is-invalid': (!form.controls.dateRefueling.valid && !form.controls.dateRefueling.pristine) }"
+                               placeholder="YYYY/mm/DD" />
+
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+
+                    <div class="col-md-3">
+                        <label class="col-form-label">Tipo de Combustível</label>
+                        <select class="form-control"
+                                formControlName="fuelType">
+                            <option value="" selected></option>
+                            <option value="1">Gasolina</option>
+                            <option value="2">Etanol</option>
+                            <option value="3">Diesel</option>
+                            }
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="col-form-label">Quantidade</label>
+                        <input class="form-control"
+                               formControlName="quantity"
+                               mask="####"
+                               [ngClass]="{ 'is-invalid': (!form.controls.quantity.valid && !form.controls.quantity.pristine) }" />
+
+                    </div>
+
+                </div>
+
+                <hr />
+
+                <div class="mb-3 row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="submit()">Cadastrar</button>
+                        <button type="button" class="btn btn-warning" [routerLink]="['/app/abastecimentos']">Cancelar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

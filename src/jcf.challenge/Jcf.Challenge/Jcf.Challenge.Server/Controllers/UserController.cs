@@ -24,7 +24,8 @@ namespace Jcf.Challenge.Server.Controllers
 
         #region Crud
 
-        [HttpPost, AllowAnonymous]
+        [HttpPost]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> Create([Required] CreateUserViewModel newUser)
         {
             try

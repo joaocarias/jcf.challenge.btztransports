@@ -39,6 +39,21 @@ export class DataService {
     return this.http.post(`${this.urlApi}/Driver/Create`, data, { headers: this.composeHeaders() });
   }
 
+  driverGet(id: any) {
+    let params = new HttpParams().set("id", id);
+    return this.http.get<Driver>(`${this.urlApi}/Driver/Get`, { headers: this.composeHeaders(), params: params });
+  }
+
+  driverDelete(id: any) {
+    let params = new HttpParams().set("id", id);
+    return this.http.delete(`${this.urlApi}/Driver/Delete`, { headers: this.composeHeaders(), params: params });
+  }
+
+  driverUpdate(data: any) {
+    let params = new HttpParams().set("id", data.id);
+    return this.http.put(`${this.urlApi}/Driver/Update`, data, { headers: this.composeHeaders(), params: params });
+  }
+  
   vehicleGetAll() {
     return this.http.get<Array<Vehiche>>(`${this.urlApi}/Vehicle/GetAll`, { headers: this.composeHeaders() });
   }
@@ -61,4 +76,13 @@ export class DataService {
     let params = new HttpParams().set("id", id);
     return this.http.delete(`${this.urlApi}/Vehicle/Delete`, { headers: this.composeHeaders(), params: params });
   }
+
+  refuelingGetAll() {
+    return this.http.get<Array<Vehiche>>(`${this.urlApi}/Refueling/GetAll`, { headers: this.composeHeaders() });
+  }
+
+  refuelingCreate(data: any) {
+    return this.http.post(`${this.urlApi}/Refueling/Create`, data, { headers: this.composeHeaders() });
+  }
+
 }

@@ -1,0 +1,69 @@
+<app-header-default></app-header-default>
+
+<app-navbar></app-navbar>
+
+<div class="container mt-3">
+
+    <nav aria-label="breadcrumb ">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a [routerLink]="['/app']">Home</a></li>
+            <li class="breadcrumb-item"><a [routerLink]="['/app/motoristas']">Motorista</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Detalhar</li>
+        </ol>
+    </nav>
+
+    <div class="card">
+        <div class="card-header">
+            Detalhe do Motorista
+        </div>
+        <div class="card-body">
+
+            <div class="mb-3 row">
+
+                <div class="col-md-4">
+                    <strong>CPF: </strong> {{ driver?.documentNumber }}
+                </div>
+
+                <div class="col-md-4">
+                    <strong>Nome: </strong> {{ driver?.name }}
+
+                </div>
+
+                <div class="col-md-4">
+                    <strong>Data de Aniversário: </strong> {{ driver?.dataOfBirth }}
+                </div>
+
+            </div>
+
+            <div class="mb-3 row">
+
+                <div class="col-md-4">
+                    <strong>CNH: </strong> {{ driver?.licenseNumber }}
+                </div>
+
+                <div class="col-md-4">
+                    <strong>Categoria: </strong> 
+                </div>
+
+                <div class="col-md-4">
+                    <strong>Status: </strong> {{ driver?.status }}
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="mb-3 row">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-primary" [routerLink]="['/app/motoristas/motoristas', driver?.id ]">Editar</button>
+                    <button type="button" class="btn btn-danger" (click)="delete(driver?.id)">Deletar</button>
+                    <button type="button" class="btn btn-warning" [routerLink]="['/app/motoristas']">Cancelar</button>
+                </div>
+            </div>
+
+            <hr />
+
+            <p>Obs: o botão de Deletar não tem confirmação da ação, se clicar nele, vai remover o registro!</p>
+            <p>A categoria do CNH não deu tempo para implementar no font, mas foi implementada no backend</p>
+        </div>
+    </div>
+</div>

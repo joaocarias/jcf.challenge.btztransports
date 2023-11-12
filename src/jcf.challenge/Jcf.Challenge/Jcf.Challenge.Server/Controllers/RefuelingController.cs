@@ -40,8 +40,8 @@ namespace Jcf.Challenge.Server.Controllers
 
                 var refueling = new Refueling(model.VehicleId, model.DriverId, model.DateRefueling, model.FuelType, model.Quantity, GetUserIdFromToken());
               
-                if (!refueling.FuelIsValidade(vehicle)) BadRequest(new { vehicleId = model.VehicleId, error = true, statusCode = HttpStatusCode.BadRequest, message = "Combustível não é válido para este veículo!" });
-                if (!refueling.QuantityRefueledIsValidate(vehicle)) BadRequest(new { vehicleId = model.VehicleId, error = true, statusCode = HttpStatusCode.BadRequest, message = "Quantidade de combustível maior que o tanque do veículo consegue suporta!" });
+                if (!refueling.FuelIsValidade(vehicle)) return BadRequest(new { vehicleId = model.VehicleId, error = true, statusCode = HttpStatusCode.BadRequest, message = "Combustível não é válido para este veículo!" });
+                if (!refueling.QuantityRefueledIsValidate(vehicle)) return BadRequest(new { vehicleId = model.VehicleId, error = true, statusCode = HttpStatusCode.BadRequest, message = "Quantidade de combustível maior que o tanque do veículo consegue suporta!" });
 
                 refueling.PaidAmount = refueling.GetPaidAmount();                                
                 refueling = await _refuelingRepository.CreateAsync(refueling);

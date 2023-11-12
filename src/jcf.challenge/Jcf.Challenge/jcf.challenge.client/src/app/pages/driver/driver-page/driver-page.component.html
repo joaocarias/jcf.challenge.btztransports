@@ -37,7 +37,7 @@
                         <td> {{ linha.licenseNumber }}</td>
                         <td> {{ linha.status ? "Ativo" : "Inativo" }}</td>
 
-                        <td> Detalhar, Editar, Excluir</td>
+                        <td> <a [routerLink]="['/app/motoristas/', linha.id ]"> Detalhar </a></td>
                     </tr>
                 </tbody>
             </table>

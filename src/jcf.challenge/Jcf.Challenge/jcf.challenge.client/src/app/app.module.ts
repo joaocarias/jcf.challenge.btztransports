@@ -21,6 +21,9 @@ import { VehicleCreatePageComponent } from './pages/vehicle/vehicle-create-page/
 import { VehicleDetailPageComponent } from './pages/vehicle/vehicle-detail-page/vehicle-detail-page.component';
 import { VehicleEditPageComponent } from './pages/vehicle/vehicle-edit-page/vehicle-edit-page.component';
 import { VehicleRelatorioPageComponent } from './pages/vehicle/vehicle-relatorio-page/vehicle-relatorio-page.component';
+import { DriverDetailPageComponent } from './pages/driver/driver-detail-page/driver-detail-page.component';
+import { RefuelingPageComponent } from './pages/refueling/refueling-page/refueling-page.component';
+import { RefuelingCreatePageComponent } from './pages/refueling/refueling-create-page/refueling-create-page.component';
 
 
 @NgModule({
@@ -39,6 +42,9 @@ import { VehicleRelatorioPageComponent } from './pages/vehicle/vehicle-relatorio
     VehicleDetailPageComponent,
     VehicleEditPageComponent,
     VehicleRelatorioPageComponent,
+    DriverDetailPageComponent,
+    RefuelingPageComponent,
+    RefuelingCreatePageComponent,
   ],
   imports: [
     BrowserModule,

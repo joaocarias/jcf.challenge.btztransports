@@ -1,13 +1,13 @@
 export class Driver {
   constructor(
-    public _id: string | null,
+    public id: string | null,
     public name: string,
     public documentNumber: string,
     public licenseNumber: string,
-    public licenseCategories: Array<string>,
+    public licenseCategories: Array<number> | [2],
     public dataOfBirth: Date,
-    public status: boolean    
+    public status: boolean | true   
   ) {    
-    status = true;
+   
   }
 }

@@ -67,52 +67,74 @@
 
                     <div class="col-md-6">
                         <label class="col-form-label">Categoria CNH</label>
+
+                        <label formArrayName="orders" *ngFor="let order of ordersFormArray.controls; let i = index">
+                            <input type="checkbox" [formControlName]="i">
+                            {{dataLincenses[i].name}}
+                        </label>
+
+
+<!-- 
                         <div class="col-md-12">
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" formControlName="licenseCategories" value="1">
+                                <input class="form-check-input" type="checkbox" formControlName="licenseCategories" [value]="1">
                                 <label class="form-check-label" for="licenseCategoriesACC">ACC</label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" formControlName="licenseCategories" value="1">
+                                <input class="form-check-input" type="checkbox" formControlName="licenseCategories" [value]="1">
                                 <label class="form-check-label" for="licenseCategoriesA">A</label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" formControlName="licenseCategories" value="3" checked>
+                                <input class="form-check-input" type="checkbox" formControlName="licenseCategories" [value]="3">
                                 <label class="form-check-label" for="licenseCategoriesB">B</label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" formControlName="licenseCategories" value="4">
+                                <input class="form-check-input" type="checkbox" formControlName="licenseCategories" [value]="4">
                                 <label class="form-check-label" for="licenseCategoriesC">C</label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" formControlName="licenseCategories" value="5">
+                                <input class="form-check-input" type="checkbox" formControlName="licenseCategories" [value]="5">
                                 <label class="form-check-label" for="licenseCategoriesD">D</label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" formControlName="licenseCategories" value="6">
+                                <input class="form-check-input" type="checkbox" formControlName="licenseCategories" [value]="6">
                                 <label class="form-check-label" for="licenseCategoriesE">E</label>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
+   
+<!-- 
+                    <div class="col-md-6">
+                        <label class="col-form-label">Categoria CNH</label>
+                        <select class="form-control"
+                                formControlName="licenseCategories">
+                                    <option value="1">Licença ACC</option>
+                                    <option value="2">Categoria A</option>
+                                    <option value="3">Categoria B</option>
+                                    <option value="4">Categoria C</option>
+                                    <option value="5">Categoria D</option>
+                                    <option value="6">Categoria E</option>
+                            }
+                        </select>
+                    </div> -->
+                    
+
 
                     <div class="col-md-3">
                         <label class="col-form-label">Status</label>
-                        <div class="col-md-12">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="status" formControlName="status" ng-value="true" checked>
-                                <label class="form-check-label" for="inlineRadio1">Ativo</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="status" id="inlineRadio2" formControlName="status" ng-value="true">
-                                <label class="form-check-label" for="inlineRadio2">Inativo</label>
-                            </div>
-                        </div>
+                        <select class="form-control"
+                                formControlName="status">
+                            <option value="true">Ativo</option>
+                            <option value="false">Inativo</option>
+                            }
+                        </select>
+
                     </div>
                 </div>
 

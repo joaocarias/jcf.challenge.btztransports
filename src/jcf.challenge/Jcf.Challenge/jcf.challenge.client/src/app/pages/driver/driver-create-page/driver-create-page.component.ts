@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { DataService } from "../../../services/data/data.service";
-import { Driver } from "../../../models/driver";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-driver-create-page',
@@ -10,6 +9,16 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 })
 export class DriverCreatePageComponent implements OnInit {
   public form: FormGroup;
+
+  public dataLincenses = [
+    { id: 1, name: 'ACC' },
+    { id: 2, name: 'A' },
+    { id: 3, name: 'B' },
+    { id: 4, name: 'C' },
+    { id: 5, name: 'D' },
+    { id: 6, name: 'E' },
+  ];
+
   constructor(
     private router: Router,
     private dataService: DataService,
@@ -36,7 +45,7 @@ export class DriverCreatePageComponent implements OnInit {
         Validators.required
       ])],
 
-      licenseCategories: ['', Validators.compose([        
+      licenseCategories: [[2], Validators.compose([        
         Validators.required
       ])],
 
@@ -47,6 +56,8 @@ export class DriverCreatePageComponent implements OnInit {
       status: ['', Validators.compose([
         Validators.required
       ])],
+
+      orders: new FormArray([])
 
     });
 
@@ -69,5 +80,13 @@ export class DriverCreatePageComponent implements OnInit {
               console.log(err);
             }
           });
+  }
+
+  get ordersFormArray() {
+    return this.form.controls.orders as FormArray;
+  }
+
+  private addCheckboxes() {
+    this.dataLincenses.forEach(() => this.ordersFormArray.push(new FormControl(false)));
   }
 }
